@@ -77,7 +77,7 @@ getCookie(name: string);
 
 ### Clear cookies
 
-Simply erases your cookies from array leaving it empty
+Simply erases your cookies from array leaving it empty.
 
 ```js
 clearCookies();
