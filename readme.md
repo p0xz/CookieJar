@@ -56,7 +56,7 @@ jar.getCookie("sessionId");
 ### Sets and initializes your cookies
 
 ```js
-setCookies(_cookies: Array<string>) {}
+setCookies(_cookies: Array<string>);
 ```
 
 ### Return cookies
