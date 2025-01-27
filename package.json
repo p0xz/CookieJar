@@ -1,0 +1,26 @@
+{
+  "name": "cookiejar",
+  "version": "0.0.1",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsx watch index.ts",
+    "build": "tsup index.ts --format cjs,esm --dts",
+    "lint": "tsc"
+  },
+  "keywords": [
+    "cookies",
+    "cookiejar",
+    "jar"
+  ],
+  "author": "p0xz",
+  "license": "AGPL-3.0",
+  "description": "Simple & lightweight cookiejar for javascript",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.12",
+    "tsup": "^8.3.6",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}
