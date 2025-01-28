@@ -72,7 +72,6 @@ class Cookie {
     }
 }
 
-// TODO: Implement cookieBuilder
 class CookieJar {
     private cookies: iCookieJar.Cookie[];
     private debug_stdout: boolean
@@ -80,11 +79,6 @@ class CookieJar {
     constructor(debug_stdout: boolean = false) {
         this.cookies = [];
         this.debug_stdout = debug_stdout;
-    }
-
-    // TODO: Implement cookieBuilder
-    private cookieBuilder() {
-        // ...
     }
 
     public removeCookie(cookieName: string) {
@@ -177,5 +171,6 @@ const cookieJar = new CookieJar();
 cookieJar.setCookies(testCookie);
 
 cookieJar.removeCookie('sessionId')
+
 
 export default CookieJar;
