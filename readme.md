@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://lh3.googleusercontent.com/fife/ALs6j_F3F4SmnxawPQ8NJyKDH3R2S9BggZ3M8_F3m10xP3WZCPXzqqErexp_yYlPohLXho6xEej4MffiFnhnozMZWShWY7xBsZaG-mkyDxGhNwqqZnt5vyW89Wg6yQ5JWO_D2MUTjed_Hs31oQMijEebFqRdg103pa01wFPt95DPwg1rT9sWUM3_vnwdGMCdWwAqTbGik9z8l6hi-S1uNZAw7aQICd3U_eQ4SbdO7sx-RvOLfGYODZQlsjni2RDbuE3XIZG_bga8vom7zphWl9u974_i-nNOCxEnSlFcd9cOXVyAYf7rE3oIBorShyJ_bAUu2IDJryifjvBuNEf7-ztJF2Tobalv6f1qyjzTJTIKkX2hx2u446PGLk939NCMdXkSz9MBqSf3Xknc75-wf3iXLUJ6ghpzWimzmQatlx4wbNoc4mY8PmSRu1D7ugHHntKyAr98DPNCsnpUU6Iu7BEWDssEemHbgWeBG-3tuSwipVLwDN84vgMYI8AcAUAS7-hmNwf3lOhUMio89J_YgCcLOHrbb_eyD5QVGZWa3yBIKAh2PqHZW8bk2e-rdNdasO3IjIeNJUlc5b2XbgLgklYoAhkPKRoDYu9hwS8S-eB1ajyJJOXselSkw0zSpJ3BOpgBTtsuER3ZmE5p1ImOQ3rrbrRFipZwysNPhewJxF0cNtJ1ZRnf5qm1CgUkqHLt3IJzhjlS319ivo8qLt4aZpGh0WFrVy0om0soEDKsqdGp80oOBUW94S8bCm_tVhiChswafBz9qvPcvedptnXMcNvYX6OR5q-cUBuhjbDK1iJZndHXC2oN1oyQqXpubb7x8T0mWWxmK3zGFnBKMCs8LcPMbCBWECEng04wv5-ADKkU7Iroh_ugWJKYtXITsxYxzv_5E-aCtb1TRjGvpg2LKIGGBmMXqH7PuUsYkYDgxqINkGR2IuEfNHvGLLVhCVf29ExjsuEID5Orugx-wpB44ZgtqO2PNMCtF_veAJ8dpMVnlEpvSxmGaHweWJYi_56tIHDimgu-Sblzd6GB2TMaiPnJa9o4xqf-JqnwblnmjEvprZlLoRLoL5uyh0txVoY1cs5lpJIvZAfuSYu6I3sAGaASacxFgLkXQds0HljphY1ByfismuceHnmbyYqtKDlmr5U6FvBiyx9xHnsCHcldnM7pwDnfz74VegUDqeJJyJd5xt5Au7TmUBeIlXPfdEGU-RzSBZmRcWwOUtdQ9JWUFXwVbRdgkUQiBRjxCY6OMq3RfmWSrAhAt1hI-WcSmgutO0Z0HqiSxmpIKvQOEgGAj4a1L5ShAwkMjjE_cCGMCdx1o3LPuKNGFRXqhe3vsBIP-q8qrUXrNDasucF31K5GpsgWqqPBFyKnKtAqtB2gAC6Mk-2i8luMB8d77sORk4yjPRXFswRfFRr2tjD0Vw4oufPEb8SYoYu0dPOCzjD-ee2UksUOicccLYZnIOkEYRTbO8lbVSkcf0ZcFgnk=s512" align="center" width="30%">
+    <img src="https://ucarecdn.com/239dc829-65f3-4ec9-b0a1-6bba2e878b40/477bda9dece1440bbf2dc6f0b90b4042_removalai_preview1.png" align="center" width="30%">
 </p>
 <p align="center"><h1 align="center">CookieJar</h1></p>
 <p align="center">
@@ -10,6 +10,7 @@
 	<img src="https://img.shields.io/github/last-commit/p0xz/CookieJar?style=default&logo=git&logoColor=white&color=ff964f" alt="last-commit">
 	<img src="https://img.shields.io/github/languages/top/p0xz/CookieJar?style=default&color=ff964f" alt="repo-top-language">
 	<img src="https://img.shields.io/github/languages/count/p0xz/CookieJar?style=default&color=ff964f" alt="repo-language-count">
+	<a href="https://www.npmjs.com/package/@p0xz/cookiejar" style="outline:none;border:none;"><img src="https://img.shields.io/npm/v/@p0xz/cookiejar" alt="npm-version" /></a>
 </p>
 <p align="center"><!-- default option, no dependency badges. -->
 </p>
