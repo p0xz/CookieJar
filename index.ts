@@ -1,8 +1,15 @@
+import { CookieError } from "./lib/exceptions";
+
 namespace iCookieJar {
+    export interface interceptorOptions {
+        update: (cookie: string) => void;
+        isExpired: () => void;
+    }
     export interface Cookie {
         cookieName: string;
         cookieValue: string;
         attributes: Map<string, any>;
+        interceptor?: (options: interceptorOptions) => void;
         raw: string;
     }
 }
@@ -49,6 +56,7 @@ class Cookie {
             cookieName: "",
             cookieValue: "",
             attributes: new Map<string, any>(),
+            interceptor: undefined,
             raw: cookie,
         };
         const cookieAttributes = cookie.slice(cookie.indexOf(";") + 2);
@@ -81,6 +89,12 @@ class CookieJar {
         this.debug_stdout = debug_stdout;
     }
 
+    private isExpired(cookieName: string) {
+        const expiresAttribute = (this.getCookie(cookieName, false) as iCookieJar.Cookie).attributes.get('Expires');
+
+        return new Date(expiresAttribute).getTime() < Date.now();
+    }
+
     public removeCookie(cookieName: string) {
         const cookie = this.getCookie(cookieName, false) as iCookieJar.Cookie;
 
@@ -89,6 +103,32 @@ class CookieJar {
         if (id < 0) return;
 
         this.cookies.splice(id, 1);
+    }
+
+    public intercept(cookieName: string, callback: (options: iCookieJar.interceptorOptions) => void) {
+        const cookie = this.getCookie(cookieName, false) as iCookieJar.Cookie;
+        cookie.interceptor = callback;
+
+        const options = {
+            update: (_cookie: string) => {
+                const id = this.cookies.indexOf(cookie);
+
+                this.cookies[id] = Cookie.parse(_cookie);
+            },
+            isExpired: () => {
+                return this.isExpired(cookieName);
+            }
+        }
+
+        return {
+            getCookie: (raw: boolean = true) => {
+                (cookie.interceptor as (options: iCookieJar.interceptorOptions) => void)(options);
+
+                if (!raw) return cookie;
+
+                return cookie.raw;
+            }
+        };
     }
 
     /**
@@ -151,7 +191,10 @@ class CookieJar {
     public getCookie(name: string, raw: boolean = true) {
         const cookie = this.cookies.find(cookie => cookie.cookieName === name);
 
-        if (!cookie) return undefined;
+        if (!cookie) {
+            throw new CookieError(`Cookie "${name}" doesn't exists`);
+        }
+
         if (!raw) return cookie;
 
         return Cookie.toString(cookie);
@@ -161,16 +204,5 @@ class CookieJar {
         this.cookies = [];
     }
 }
-
-const testCookie = ["sessionId=abc123; Domain=example.com; Path=/; Secure; HttpOnly; SameSite=Strict; Expires=Wed, 09 Feb 2025 10:18:14 GMT",
-    "garlicID=pukovec; Domain=example.com; Path=/; Secure; HttpOnly; SameSite=Strict; Expires=Wed, 01 Jun 2025 10:00:14 GMT"
-]
-
-const cookieJar = new CookieJar();
-
-cookieJar.setCookies(testCookie);
-
-cookieJar.removeCookie('sessionId')
-
 
 export default CookieJar;

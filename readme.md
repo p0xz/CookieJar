@@ -23,12 +23,13 @@
 
 ## Features
 
-- ⚡️ Fast Cookie Parsing: Efficiently parses raw cookie strings.
-- 🗄️ Cookie Jar Management: Stores and manages multiple cookies.
-- 🔎 Easy Cookie Retrieval: Retrieve cookies by name.
-- ✅ TypeScript Support: Built-in type definitions.
-- 🚀 Zero Dependencies: Lightweight and dependency-free.
-- ⏳ Expiration Handling: Monitor and manage expiring cookies with custom warnings and removal logic.
+- ⚡️ Fast Cookie Parsing: Efficiently parses raw cookie strings
+- 🗄️ Cookie Jar Management: Stores and manages multiple cookies
+- ⏳ Expiration Handling: Monitor and manage expiring cookies with custom warnings and removal logic
+- 🔄 Custom Cookie Interceptors: Dynamically access and update cookies with custom logic
+- 🔎 Easy Cookie Retrieval: Retrieve cookies by name
+- ✅ TypeScript Support: Built-in type definitions
+- 🚀 Zero Dependencies: Lightweight and dependency-free
 
 ## Install
 
@@ -67,6 +68,8 @@ const jar = new CookieJar();
 
 const exampleCookie = "sessionId=abc123; SameSite=Strict; Expires=Wed, 09 Jun 2025 10:18:14 GMT";
 
+jar.setCookie([exampleCookie]);
+
 jar.expireChecker("sessionId", () => {
   console.log("Session cookie has expired!");
   // handle aftermath...
@@ -74,6 +77,31 @@ jar.expireChecker("sessionId", () => {
 ```
 
 Time format for `warnLimit` can also be `"365y 4w 30d 24h 60m 60s"` (order is irrelevant)
+
+### Interceptor
+
+With `intercept`, you can:
+
+- Dynamically update a cookie's value using a callback.
+- Check if a cookie has expired with a built-in helper method.
+- Access the raw or parsed cookie at any time.
+
+```ts
+import cookiejar from "@p0xz/cookiejar";
+
+const jar = new CookieJar();
+
+const exampleCookie = "sessionId=abc123; SameSite=Strict; Expires=Wed, 09 Jun 2025 10:18:14 GMT";
+
+jar.setCookie([exampleCookie]);
+
+const intercepted = jar.intercept("sessionId", (options) => {
+  if (!options.isExpired()) return;
+
+  console.warn("The sessionId cookie has expired.");
+  options.update("sessionId=refreshed123; SameSite=Strict; Expires=Wed, 10 Jun 2025 10:18:14 GMT");
+});
+```
 
 ## Methods
 
@@ -111,24 +139,7 @@ clearCookies();
 
 ## TO:DO
 
-### Implement immediate cookie checker
-
-```ts
-import cookiejar from "@p0xz/cookiejar";
-
-const jar = new CookieJar();
-
-const exampleCookie = "sessionId=abc123; SameSite=Strict; Expires=Wed, 09 Jun 2025 10:18:14 GMT";
-
-const sessionIdMiddleware = jar.intercept('sessionId', () => {
-  // handle session refresh...
-});
-
-// returns sessionId value (i.e abc123), but before any cookie retrieval it will check the expiration date and if it's already expired then it will be handled accordingly
-const sessionId = sessionIdMiddleware.getCookie();
-```
-
-This can be useful when handling 3rd party cookies e.g instagram scrapper where you'd need the token which is limited by time.
+[x] Implement immediate cookie checker
 
 ## License
 
