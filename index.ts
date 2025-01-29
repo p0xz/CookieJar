@@ -182,8 +182,8 @@ class CookieJar {
      * 
      * @param formatted if true, returns the cookies in raw format i.e string otherwise in parsed format
      */
-    public getCookies(formatted: boolean = true) {
-        if (!formatted) return this.cookies;
+    public getCookies(raw: boolean = true) {
+        if (!raw) return this.cookies;
 
         return this.cookies.map(cookie => Cookie.toString(cookie));
     }

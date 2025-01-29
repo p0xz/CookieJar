@@ -91,16 +91,19 @@ import cookiejar from "@p0xz/cookiejar";
 
 const jar = new CookieJar();
 
-const exampleCookie = "sessionId=abc123; SameSite=Strict; Expires=Wed, 09 Jun 2025 10:18:14 GMT";
+const exampleCookie = "sessionId=abc123; SameSite=Strict; Expires=Wed, 09 Jun 2024 10:18:14 GMT";
 
 jar.setCookie([exampleCookie]);
 
-const intercepted = jar.intercept("sessionId", (options) => {
+const sessionIdMiddleware = jar.intercept("sessionId", (options) => {
   if (!options.isExpired()) return;
 
   console.warn("The sessionId cookie has expired.");
   options.update("sessionId=refreshed123; SameSite=Strict; Expires=Wed, 10 Jun 2025 10:18:14 GMT");
 });
+
+// returns cookie with interceptor behind it
+sessionIdMiddleware.getCookie();
 ```
 
 ## Methods
@@ -111,35 +114,66 @@ const intercepted = jar.intercept("sessionId", (options) => {
 setCookies(_cookies: Array<string>);
 ```
 
-### Return cookies
+### 🔍 Get All Cookies
 
-This will return your cookies you've saved. There's also an option to return it in form of raw unparsed data or already processed.
-<br/>
-By **default** it will return raw unparsed data
+Retrieves all stored cookies. You can choose to return either raw cookie strings or parsed cookie objects.
 
 ```ts
-getCookies(formatted: boolean = true);
+getCookies(raw: boolean = true);
 ```
 
-### Return specified cookie
+### 🎯 Get a Specific Cookie
 
-This will return your desired cookie by name, if it exists.
+Retrieves a specific cookie by name, if it exists.
 
 ```ts
 getCookie(name: string, raw: boolean = true);
 ```
 
-### Clear cookies
+### 🗑️ Clear All Cookies
 
-Simply erases your cookies from array leaving it empty.
+Removes all stored cookies, leaving the cookie jar empty.
 
 ```ts
 clearCookies();
 ```
 
+### 🍪 Intercept cookie
+
+The `intercept` method allows you to hook into a specific cookie's lifecycle, enabling dynamic modifications before it is accessed.
+<br/>This is useful for updating cookie values, checking expiration or adding custom behavior.
+
+```ts
+intercept(cookieName: string, callback: (options: iCookieJar.interceptorOptions) => void);
+```
+
+Once a cookie is intercepted, the method returns a separate `getCookie` function, which ensures that the interception logic does not interfere with the default `getCookie` method of the class.
+
+```ts
+getCookie: (raw?: boolean) => string | iCookieJar.Cookie;
+```
+
+## 📜 Interface
+
+```ts
+namespace iCookieJar {
+    export interface interceptorOptions {
+        update: (cookie: string) => void;
+        isExpired: () => void;
+    }
+    export interface Cookie {
+        cookieName: string;
+        cookieValue: string;
+        attributes: Map<string, any>;
+        interceptor?: (options: interceptorOptions) => void;
+        raw: string;
+    }
+}
+```
+
 ## TO:DO
 
-[x] Implement immediate cookie checker
+- [x] Implement immediate cookie checker
 
 ## License
 
