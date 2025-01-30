@@ -108,10 +108,12 @@ sessionIdMiddleware.getCookie();
 
 ## Methods
 
-### Sets and initializes your cookies
+### 🍪 Set and Initialize Cookies
+
+The `setCookies` method allows you to store and initialize multiple cookies from an array of raw cookie strings.
 
 ```ts
-setCookies(_cookies: Array<string>);
+setCookies(_cookies: string[]);
 ```
 
 ### 🔍 Get All Cookies
@@ -170,10 +172,6 @@ namespace iCookieJar {
     }
 }
 ```
-
-## TO:DO
-
-- [x] Implement immediate cookie checker
 
 ## License
 

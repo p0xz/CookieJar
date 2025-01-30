@@ -1,16 +1,17 @@
 {
   "name": "@p0xz/cookiejar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "tsx watch index.ts",
+    "dev": "tsx watch test.ts",
     "build": "tsup index.ts --format cjs,esm --dts",
     "release": "pnpm run build && changeset publish",
     "lint": "tsc"
   },
   "keywords": [
+    "cookie",
     "cookies",
     "cookiejar",
     "jar"
